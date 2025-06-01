@@ -1,0 +1,37 @@
+/* CSS GLOBAL 
+------------------------------------------- */
+
+/* Variáveis 
+------------------------------------------  */
+
+:root {
+  --gray-100: #D1F1D7;
+  --green-500: #379936;
+  --green-700: #176016;
+  --red-500: #C91518;
+  --black-500: #251A12;
+}
+
+body {
+  margin: 0;
+  background-color: var(--gray-100) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Reset 
+------------------------------------------  */
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0 ;
+}

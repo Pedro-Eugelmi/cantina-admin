@@ -1,0 +1,15 @@
+.header {
+    background-color: var(--green-500);
+}
+
+.header_title {
+    color: #FFF;
+    font-size: 48px;
+    margin: 0 !important;
+}
+
+.header_bottom {
+    height: 10px;
+    width: 100%;
+    background-color: var(--green-700);
+}
