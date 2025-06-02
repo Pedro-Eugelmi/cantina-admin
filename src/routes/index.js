@@ -9,6 +9,7 @@ import ViewOrder from '../pages/order/ViewOrder';
 
 
 export default function AppRoutes() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -22,4 +23,5 @@ export default function AppRoutes() {
       </Routes>
     </BrowserRouter>
   );
+  
 }
