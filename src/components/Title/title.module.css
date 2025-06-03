@@ -1,0 +1,10 @@
+.title_area {
+    background-color: var(--white);
+    padding: 20px 40px 60px 40px;
+    border-radius: 10px;
+}
+
+.title {
+    color: var(--green-700);
+    font-weight: 600;
+}
