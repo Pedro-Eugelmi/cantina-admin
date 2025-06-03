@@ -4,6 +4,7 @@ import styles from './login.module.css';
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+    const navigate = useNavigate(); // Hook chamado corretamente
 
     // useEffect(() => {
     //     async function login() {
@@ -29,7 +30,7 @@ export default function Login() {
 
         try {
             await loginUserService(data);
-            Navigate("/pedidos");
+            navigate("/pedidos");
         } catch (err) {
             console.error(err.message);
         }
