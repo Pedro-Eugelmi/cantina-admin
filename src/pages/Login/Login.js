@@ -6,19 +6,6 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
     const navigate = useNavigate(); // Hook chamado corretamente
 
-    // useEffect(() => {
-    //     async function login() {
-    //         try {
-    //               const response = await loginUserService(data);
-    //             console.log(response);
-    //         } catch (err) {
-    //             console.error(err.message);
-    //         }
-    //     }
-
-    //     login();
-    // }, []);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -32,13 +19,15 @@ export default function Login() {
             await loginUserService(data);
             navigate("/pedidos");
         } catch (err) {
-            console.error(err.message);
+            toast.current.show(); 
         }
 
     }
 
     return (        
         <section className={`${styles.login} d-flex`}>
+            <Toast ref={toast} />
+
             <div className="container">
                 <div className="row pt-5">
                     <div className="col-12 col-xl-6 mx-auto mt-5">
