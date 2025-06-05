@@ -1,0 +1,8 @@
+.filtersProduct {
+    background-color: var(--white);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px;
+    border-radius: 10px 10px 0 0;
+}

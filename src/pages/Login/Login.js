@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { loginUserService } from "../../services/userService";
 import styles from './login.module.css';
 import { useNavigate } from "react-router-dom";
+import { Toast } from 'primereact/toast';
+import { useRef } from 'react';
 
 export default function Login() {
     const navigate = useNavigate(); // Hook chamado corretamente
-
+    const toast = useRef(null);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
