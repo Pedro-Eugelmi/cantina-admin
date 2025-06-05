@@ -27,8 +27,9 @@ export async function loginUserService(userData) {
         // Verifica se a resposta contém um token
         if (response.data.token) {
             // Armazena o token no localStorage
-            console.log("VOU ARMAZENAR ESSA INFORMAÇÃO");
-            localStorage.setItem('token', response.token);
+            alert(response.data.token);
+            console.log(response.data.token);
+            localStorage.setItem('token', response.data.token);
         }
 
         return response.data;
