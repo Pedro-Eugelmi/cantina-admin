@@ -3,3 +3,46 @@
     padding: 40px;
     border-radius: 0 0 10px 10px;
 }
+
+.order_item {
+    background-color: var(--gray-700);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.order_item + .order_item {
+    margin-top: 20px;
+}
+
+.order_title {
+    color: var(--green-700);
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.order_content {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.order_header {
+    background-color: var(--green-700);
+    color: var(--white);
+    padding: 10px;
+}
+
+.product_List {
+    margin-top: 20px;
+    padding: 20px;
+    list-style-type: none
+}
+
+.product_List li {
+    padding: 20px 0;
+    font-size: 24px;
+}
+
+.product_List li:not(:last-child) {
+    border-bottom: 1px solid #000;
+}

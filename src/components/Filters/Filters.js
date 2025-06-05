@@ -9,7 +9,7 @@ export default function Filter(props) {
 
                     <div className={styles.filters}>
                         
-                        <select aria-label="Status do pedido" id="status" name="status">
+                        <select  aria-label="Status do pedido" id="status" name="status">
                             <option hidden value="">Status</option>
                             <option value="todos">Todos</option>
                             <option>Aberto</option>

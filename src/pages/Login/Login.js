@@ -2,9 +2,29 @@ import { useEffect } from "react";
 import { loginUserService } from "../../services/userService";
 import styles from './login.module.css';
 import { useNavigate } from "react-router-dom";
+import { Toast } from 'primereact/toast';
+import { useRef } from 'react'; 
+import { useSearchParams } from 'react-router-dom';
 
 export default function Login() {
-    const navigate = useNavigate(); // Hook chamado corretamente
+    const navigate = useNavigate(); 
+    const toast = useRef(null);
+
+    const [searchParams] = useSearchParams();
+    const error = searchParams.get('error');
+
+    useEffect(() => {
+        if (error) {
+            toast.current.show({
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Acesso negado. Faça login para continuar.',
+              life: 3000
+            });
+          
+        }
+      }, [error]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,9 +37,16 @@ export default function Login() {
 
         try {
             await loginUserService(data);
+            
             navigate("/pedidos");
+
         } catch (err) {
-            toast.current.show(); 
+            toast.current.show({
+                severity: 'error',
+                summary: 'Erro',
+                detail: 'Falha no login. Verifique suas credenciais.',
+                life: 3000 
+            });
         }
 
     }
