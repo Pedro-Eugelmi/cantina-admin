@@ -3,15 +3,11 @@ import { loginUserService } from "../../services/userService";
 import styles from './login.module.css';
 import { useNavigate } from "react-router-dom";
 import { Toast } from 'primereact/toast';
-import { useRef } from 'react';
-import { Toast } from 'primereact/toast';
 import { useRef } from 'react'; 
 import { useSearchParams } from 'react-router-dom';
 
 export default function Login() {
     const navigate = useNavigate(); // Hook chamado corretamente
-    const toast = useRef(null);
-    const navigate = useNavigate(); 
     const toast = useRef(null);
 
     const [searchParams] = useSearchParams();
@@ -39,16 +35,23 @@ export default function Login() {
             password: form.password.value
         };
 
+        toast.current.show({
+            severity: 'info',
+            summary: 'Fazendo login',
+            detail: 'Estamos verificando seus dados...',
+            life: 3000
+          });
+
         try {
             await loginUserService(data);
             
-            navigate("/pedidos");
+            navigate("/pedidos/?login=success");
 
         } catch (err) {
             toast.current.show({
                 severity: 'error',
-                summary: 'Erro',
-                detail: 'Falha no login. Verifique suas credenciais.',
+                summary: 'Falha no login.',
+                detail: 'Verifique suas credenciais.',
                 life: 3000 
             });
         }

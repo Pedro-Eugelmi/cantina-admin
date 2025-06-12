@@ -25,37 +25,37 @@ useEffect(() => {
                 <div className="col-12">
                     <ul className={styles.orders_area}>
                       {
-                      orders?.data ? (
-                        orders.data.data.map(order => (
-                            <div key={order.id} className={styles.order_item}>
-                              <h2 className={styles.order_title} >Pedido ID: #{order.id}</h2>
-                              
-                              <div className={`${styles.order_content} mt-4`}>    
+                        orders?.data ? (
+                          orders.data.data.map(order => (
+                              <div key={order.id} className={styles.order_item}>
+                                <h2 className={styles.order_title} >Pedido ID: #{order.id}</h2>
+                                
+                                <div className={`${styles.order_content} mt-4`}>    
 
-                                <div className={styles.order_header}>
-                                  <h3>Cliente: lorem ipsum</h3>
-                                </div>
+                                  <div className={styles.order_header}>
+                                    <h3>Cliente: lorem ipsum</h3>
+                                  </div>
 
-                                <ul class={styles.product_List}>
-                                  <li>Produto teste</li> 
-                                  <li>Produto teste</li> 
-                                  <li>Produto teste</li> 
-                                  <li>Produto teste</li> 
-                                  <li>Produto teste</li> 
-                                </ul>
+                                  <ul className={styles.product_List}>
+                                    <li>Produto teste</li> 
+                                    <li>Produto teste</li> 
+                                    <li>Produto teste</li> 
+                                    <li>Produto teste</li> 
+                                    <li>Produto teste</li> 
+                                  </ul>
 
-                                <div>
-                                    <span>Total:</span> 
+                                  <div>
+                                      <span>Total:</span> 
+                                  </div>
+
                                 </div>
 
                               </div>
-
-                            </div>
-                            
-                          ))
-                        ) : (
-                          <p>Carregando pedidos...</p>
-                        )
+                              
+                            ))
+                          ) : (
+                            <p>Carregando pedidos...</p>
+                          )
                       }
                     </ul>
                 </div>
