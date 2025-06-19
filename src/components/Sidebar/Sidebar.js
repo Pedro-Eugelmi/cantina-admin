@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./sidebar.module.css"
+import style from "./sidebar.module.css"
 
-function Sidebar({isOpen, onClose}){
+const Sidebar = ({isOpen, toggleSidebar}) => {
     return(
-        <div className={styles.sidebar}>
-            <button onClick={onClose}>
+        <div className={`${style.sidebar} ${isOpen ? style.open : ''}`}>
+            <button onClick={toggleSidebar} className={style.closeBtn}>
                 X
             </button>
+
             <ul>
                 <li>AAAAA</li>
                 <li>AAAAA</li>
