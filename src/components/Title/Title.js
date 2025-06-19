@@ -3,7 +3,7 @@ import styles from './title.module.css';
 export default function Title(props) {
     let linkbutton = props.linkbutton;
     let nameButton = props.nameButton;
-    console.log(linkbutton, nameButton);
+
     return (
         <div className="container pt-4">
             <div className='col-12'>

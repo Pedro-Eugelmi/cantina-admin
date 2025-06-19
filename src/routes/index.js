@@ -7,6 +7,8 @@ import CreateProduct from '../pages/product/CreateProduct';
 import UpdateProduct from '../pages/product/UpdateProduct';
 import ViewOrder from '../pages/order/ViewOrder';
 import PrivateRoute from './PrivateRoutes';
+import Categories from '../pages/categories/Categories';
+import CreateCategory from '../pages/categories/CreateCategory/CreateCategory';
 
 export default function AppRoutes() {
 
@@ -21,6 +23,8 @@ export default function AppRoutes() {
           <Route path="/produtos" element={<Products/>} />
           <Route path="/criar-produto" element={<CreateProduct/>} />
           <Route path="/editar-produto" element={<UpdateProduct/>} />
+          <Route path="/categorias" element={<Categories/>} />
+          <Route path="/criar-categoria" element={<CreateCategory/>} />
         </Route>
       </Routes>
     </BrowserRouter>
