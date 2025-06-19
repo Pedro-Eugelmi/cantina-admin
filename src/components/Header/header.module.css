@@ -1,5 +1,7 @@
 .header {
     background-color: var(--green-500);
+    position: relative;
+    z-index: 100;
 }
 
 .header_title {
@@ -14,3 +16,11 @@
     background-color: var(--green-700);
 }
 
+.blur{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 102;
+    cursor: pointer;
+}

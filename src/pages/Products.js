@@ -7,7 +7,7 @@ export default function Products() {
     return (
         <>
             <Header/>
-            <Title title="Produtos" linkbutton="./product/CreateProduct.js" nameButton="Adicionar+"/>
+            <Title title="Produtos" linkbutton="/criar-produto" nameButton="Adicionar+"/>
             <FiltersProduct/>
             <ProductList/>
         </>
