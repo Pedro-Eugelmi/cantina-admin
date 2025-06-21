@@ -1,6 +1,24 @@
 import styles from './categories.module.css';
+import getCategories from '../../services/categoryService';
+import { useEffect, useState } from 'react';
 
 export default function CategoriesList() {
+    const [categories, setCategories] = useState([]);
+
+    // Get categories
+    useEffect(() => {
+        async function loadCategories() {
+          try {
+            const data = await getCategories();
+            setCategories(data);
+          } catch (err) {
+            console.error('Failed to load orders:', err);
+          }
+        }
+    
+        loadCategories();
+      }, []);
+
 
     return (
         <>
@@ -21,65 +39,37 @@ export default function CategoriesList() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Salgados</td>
-                                        
-                                        <td className={styles.actions}>
-                                            
-                                            <button className={styles.actionsDelete}>
-                                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="m17.71 7.29-3-3a.996.996 0 0 0-1.41 0l-11.01 11A1 1 0 0 0 2 16v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l11-11a.996.996 0 0 0 0-1.41ZM5.59 18H4v-1.59l7.5-7.5 1.59 1.59zm8.91-8.91L12.91 7.5 14 6.41 15.59 8zM11 18h11v2H11z"></path></svg>                                                
-                                            </button>
-                                            
-                                            <button className={styles.deleteButton}><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="M17 6V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H2v2h2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8h2V6zM9 4h6v2H9zM6 20V8h12v12z"></path><path d="M9 10h2v8H9zM13 10h2v8h-2z"></path></svg></button>
-                                        
-                                        </td>
+                                {
+                                    categories?.data ? (
+                                    categories.data.map(category => (
+                    
 
-                                    </tr>
-
-                                    <tr>
-                                        <td>Salgados</td>
-                                        
-                                        <td className={styles.actions}>
+                                        <tr key={category.id}>
+                                            <td>{category.name}</td>
                                             
-                                            <button className={styles.actionsDelete}>
-                                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="m17.71 7.29-3-3a.996.996 0 0 0-1.41 0l-11.01 11A1 1 0 0 0 2 16v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l11-11a.996.996 0 0 0 0-1.41ZM5.59 18H4v-1.59l7.5-7.5 1.59 1.59zm8.91-8.91L12.91 7.5 14 6.41 15.59 8zM11 18h11v2H11z"></path></svg>                                                
-                                            </button>
+                                            <td className={styles.actions}>
+                                                
+                                                <button className={styles.actionsDelete}>
+                                                    <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="m17.71 7.29-3-3a.996.996 0 0 0-1.41 0l-11.01 11A1 1 0 0 0 2 16v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l11-11a.996.996 0 0 0 0-1.41ZM5.59 18H4v-1.59l7.5-7.5 1.59 1.59zm8.91-8.91L12.91 7.5 14 6.41 15.59 8zM11 18h11v2H11z"></path></svg>                                                
+                                                </button>
+                                                
+                                                <button className={styles.deleteButton}><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="M17 6V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H2v2h2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8h2V6zM9 4h6v2H9zM6 20V8h12v12z"></path><path d="M9 10h2v8H9zM13 10h2v8h-2z"></path></svg></button>
                                             
-                                            <button className={styles.deleteButton}><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="M17 6V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H2v2h2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8h2V6zM9 4h6v2H9zM6 20V8h12v12z"></path><path d="M9 10h2v8H9zM13 10h2v8h-2z"></path></svg></button>
-                                        
-                                        </td>
+                                            </td>
 
-                                    </tr>
-
-                                    <tr>
-                                        <td>Salgados</td>
+                                        </tr>
                                         
-                                        <td className={styles.actions}>
-                                            
-                                            <button className={styles.actionsDelete}>
-                                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="m17.71 7.29-3-3a.996.996 0 0 0-1.41 0l-11.01 11A1 1 0 0 0 2 16v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l11-11a.996.996 0 0 0 0-1.41ZM5.59 18H4v-1.59l7.5-7.5 1.59 1.59zm8.91-8.91L12.91 7.5 14 6.41 15.59 8zM11 18h11v2H11z"></path></svg>                                                
-                                            </button>
-                                            
-                                            <button className={styles.deleteButton}><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="M17 6V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H2v2h2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8h2V6zM9 4h6v2H9zM6 20V8h12v12z"></path><path d="M9 10h2v8H9zM13 10h2v8h-2z"></path></svg></button>
-                                        
-                                        </td>
+                                        ))
+                                    ) : (
+                                       <tr>
+                                         <td>
+                                            <p>Carregando Categorias...</p>
+                                         </td>
+                                         <td></td>
+                                       </tr>
+                                    )
+                                }
 
-                                    </tr>
-
-                                    <tr>
-                                        <td>Salgados</td>
-                                        
-                                        <td className={styles.actions}>
-                                            
-                                            <button className={styles.actionsDelete}>
-                                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="m17.71 7.29-3-3a.996.996 0 0 0-1.41 0l-11.01 11A1 1 0 0 0 2 16v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l11-11a.996.996 0 0 0 0-1.41ZM5.59 18H4v-1.59l7.5-7.5 1.59 1.59zm8.91-8.91L12.91 7.5 14 6.41 15.59 8zM11 18h11v2H11z"></path></svg>                                                
-                                            </button>
-                                            
-                                            <button className={styles.deleteButton}><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="currentColor" viewBox="0 0 24 24" ><path d="M17 6V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H2v2h2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8h2V6zM9 4h6v2H9zM6 20V8h12v12z"></path><path d="M9 10h2v8H9zM13 10h2v8h-2z"></path></svg></button>
-                                        
-                                        </td>
-
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

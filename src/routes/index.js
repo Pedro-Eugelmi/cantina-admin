@@ -9,6 +9,9 @@ import ViewOrder from '../pages/order/ViewOrder';
 import PrivateRoute from './PrivateRoutes';
 import Categories from '../pages/categories/Categories';
 import CreateCategory from '../pages/categories/CreateCategory/CreateCategory';
+import Users from '../pages/Users';
+import CreateUser from '../pages/user/createUser/CreateUser';
+import UpdateUser from '../pages/user/updateUser/UpdateUser';
 
 export default function AppRoutes() {
 
@@ -25,6 +28,9 @@ export default function AppRoutes() {
           <Route path="/editar-produto" element={<UpdateProduct/>} />
           <Route path="/categorias" element={<Categories/>} />
           <Route path="/criar-categoria" element={<CreateCategory/>} />
+          <Route path="/usuarios" element={<Users/>} />
+          <Route path="/criar-usuario" element={<CreateUser/>} />
+          <Route path="/editar-usuario" element={<UpdateUser/>} />
         </Route>
       </Routes>
     </BrowserRouter>

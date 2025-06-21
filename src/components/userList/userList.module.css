@@ -32,11 +32,11 @@
     border-radius: 50%;
 }
 
-.deleteButton:hover svg, .actionsDelete:hover svg {
+.deleteButton:hover svg, .edit:hover svg {
     color: var(--white);
 }
 
-.actionsDelete {
+.edit {
     height: 30px;
     width: 30px;
     display: flex;
@@ -44,7 +44,7 @@
     justify-content: center;
 }
 
-.actionsDelete:hover {
+.edit:hover {
     background-color: yellow;
     border-radius: 50%;
 }

@@ -1,14 +1,47 @@
 .sidebar{
     position: fixed;
     top: 0;
-    right: -250px;
-    width: 250px;
+    right: 0;
+    transform: translateX(100%);
+    width: calc(100% / 3);
+    min-width: 300px;
+    max-width: 400px;
     height: 100%;
     z-index: 103;
     background-color: var(--green-500);
-    transition: right 0.3s ease-in-out;
+    transition: 0.3s;
+    border-left: 10px solid var(--green-700);
+}
+
+.closeBtn {
+    color: var(--white);
+    font-weight: 400;
+    font-size: 30px;
+
 }
 
 .sidebar.open{
-    right: 0;
+    transform: translateX(0);
+}
+
+.list {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    list-style: none;
+}
+
+.list li {
+    transition: 0.3s;
+}
+
+.list li:hover {
+    scale:1.03 ;
+}
+
+.logout {
+    color: var(--red-500);
 }

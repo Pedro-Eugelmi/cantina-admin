@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Login() {
-    const navigate = useNavigate(); // Hook chamado corretamente
+    const navigate = useNavigate();
     const toast = useRef(null);
 
     const [searchParams] = useSearchParams();
@@ -46,7 +46,6 @@ export default function Login() {
             await loginUserService(data);
             
             navigate("/pedidos/?login=success");
-
         } catch (err) {
             toast.current.show({
                 severity: 'error',
