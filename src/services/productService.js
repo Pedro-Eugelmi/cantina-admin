@@ -1,6 +1,10 @@
-import {fetchProducts} from "../api/productApi";
+import {deleteProduct, fetchProducts} from "../api/productApi";
 
-export default function getProducts () {
+export function getProducts () {
 
     return fetchProducts();
+}
+
+export function deleteProductService(productId) {
+    return deleteProduct(productId);
 }

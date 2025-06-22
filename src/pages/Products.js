@@ -4,10 +4,11 @@ import FiltersProduct from "../components/FiltersProduct/FiltersProduct"
 import ProductList  from "../components/ProductsList/ProductList"
     
 export default function Products() {
+
     return (
         <>
             <Header/>
-            <Title title="Produtos" linkbutton="/criar-produto" nameButton="Adicionar+"/>
+            <Title title="Produtos" linkbutton="/criar-produto" nameButton="Adicionar +"/>
             <FiltersProduct/>
             <ProductList/>
         </>

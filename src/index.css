@@ -70,12 +70,26 @@ select {
   outline: none;
 }
 
+textarea {
+  width: 100%;
+  min-height: 120px;
+  max-height: 500px;
+  border-radius: 10px;
+  border: transparent;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  resize: vertical;
+  outline: none;
+  background-color: var(--gray-500) !important;
+}
+
 input {
   width: 100%;
   display: block;
-  border: 1px solid #000;
+  border: transparent;
   border-radius: 10px;
   padding: 10px 20px;
+  background-color: var(--gray-500) !important;
 }
 
 .button {
@@ -84,4 +98,23 @@ input {
   border-radius: 10px;
   padding: 10px 20px;
   font-weight: 500;
+}
+
+.button.red {
+  background-color: var(--red-500);
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--gray-500);
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.radius {
+  border-radius: 10px;
 }
