@@ -7,4 +7,21 @@
     export const loginUser = (data) => api.post('/login', data);
 
     // Fazer logout do usuário
-    export const logoutUser = () => api.post('/logout');
+    export function logoutUser() {
+        // Pega o token de acesso do localStorage
+        const token = localStorage.getItem('token');
+    
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        // Faz logout do usuário
+        return api.post('/logout', {}, {
+            headers: headers
+        });
+
+    }

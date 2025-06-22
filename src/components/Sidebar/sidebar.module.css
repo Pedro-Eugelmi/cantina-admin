@@ -42,6 +42,6 @@
     scale:1.03 ;
 }
 
-.logout {
-    color: var(--red-500);
+.logout button{
+    color: var(--red-500) !important;
 }

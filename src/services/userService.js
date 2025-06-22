@@ -1,4 +1,4 @@
-import {registerUser, loginUser} from "../api/userApi.js";
+import {registerUser, loginUser, logoutUser} from "../api/userApi.js";
 
 export async function createUserService(userData) {
     // Verifica se está tudo preenchido
@@ -28,7 +28,7 @@ export async function loginUserService(userData) {
         if (response.data.token) {
             // Armazena o token no localStorage
             alert(response.data.token);
-            console.log(response.data.token);
+
             localStorage.setItem('token', response.data.token);
         }
 
@@ -38,4 +38,12 @@ export async function loginUserService(userData) {
         throw new Error('Email e senha são obrigatórios.');
     }
 
+}
+
+export async function logoutUserService() {
+    
+    //  Faz o logout
+    const response = await logoutUser();
+    
+    return response.data;
 }

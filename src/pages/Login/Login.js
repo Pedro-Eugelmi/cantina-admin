@@ -12,6 +12,7 @@ export default function Login() {
 
     const [searchParams] = useSearchParams();
     const error = searchParams.get('error');
+    const action = searchParams.get('action');
 
     useEffect(() => {
         if (error) {
@@ -25,6 +26,18 @@ export default function Login() {
         }
       }, [error]);
 
+    useEffect(() => {
+        if (action === 'logout') {
+
+            toast.current.show({
+              severity: 'success',
+              summary: 'Sucesso',
+              detail: 'Você saiu da sua conta.',
+              life: 3000
+            });
+
+        }
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
