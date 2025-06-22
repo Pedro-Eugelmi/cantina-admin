@@ -1,0 +1,57 @@
+.table {
+    width: 100%;
+}
+
+.table thead tr {
+    background-color: var(--green-500);
+    text-align: center;
+    color: var(--white);
+}
+
+.table tr th, .table tr td {
+    padding: 20px;
+    border: 1px solid var(--green-700);
+}
+
+.table tbody tr {
+    text-align: center;
+    font-weight: 700;
+    background-color: var(--white);
+}
+
+.deleteButton {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteButton:hover {
+    background-color: var(--red-500);
+    border-radius: 50%;
+}
+
+.deleteButton:hover svg, .actionsDelete:hover svg {
+    color: var(--white);
+}
+
+.actionsDelete {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionsDelete:hover {
+    background-color: yellow;
+    border-radius: 50%;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;    
+}
+

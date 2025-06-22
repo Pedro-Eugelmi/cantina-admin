@@ -1,7 +1,15 @@
+import Header from '../../components/Header/Header'
+import ProductForm from '../../components/productForm/ProductForm'
+import Title from '../../components/Title/Title'
+
 export default function CreateProduct()  {
     return (
         <>
-            <h1>Página de criação do produto</h1>
+            <Header/>
+
+            <Title title="Criar produto"/>
+
+            <ProductForm/>
         </>
     )
 }
