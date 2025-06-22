@@ -9,10 +9,13 @@
   --gray-100: #D1F1D7;
   --gray-500: #D9D9D9;
   --gray-700: #B8D5BD;
+  --green-300: #37D736;
   --green-500: #379936;
   --green-700: #176016;
   --red-500: #C91518;
   --black-500: #251A12;
+  --yellow: #C6A916;
+  --blue: #7CCFDD;
 }
 
 body {
