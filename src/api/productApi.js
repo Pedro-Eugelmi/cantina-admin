@@ -14,7 +14,17 @@ export const fetchProducts = () => {
 
   };
 // Cadastrar novo produto.
-export const createProduct = (data) => api.post('/menu', data);
+export const createProduct = (data) => {
+    const token = localStorage.getItem('token');
+
+    return api.post('/products', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          Accept: 'application/json',
+        },
+      });
+}
 
 // Atualizar produto.
 export const updateProduct = (id, data) => api.put(`/menu/${id}`, data);

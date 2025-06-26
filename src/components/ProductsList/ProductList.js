@@ -1,22 +1,59 @@
 import styles from "./productList.module.css";
 import {getProducts, deleteProductService} from '../../services/productService';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Toast } from 'primereact/toast';
 
 export default function ProductList() {
+    const toast = useRef(null);
+
     // Função para deletar o produto
     const handleDeleteButton = async (event) => {
+        let deleteButtons = document.querySelectorAll(`.${styles.deleteButton}`);
+        console.log(deleteButtons);
+
+        deleteButtons.forEach(button => {
+            button.disabled = true;
+        });
         
+        toast.current.show({
+            severity: 'info',
+            summary: 'Deletando produto',
+            detail: 'O produto está sendo deletado...',
+            life: 3000
+        });
+
         let productId = event.currentTarget.getAttribute('data-remove');
 
         if (productId) {
             // Remove o produto
             let data = await deleteProductService(productId);
+            console.log(data);
 
-            // Atualiza a lista de produtos
-            const productsData = await getProducts();
+            if (data.status == 200) {
+                toast.current.show({
+                    severity: 'success',
+                    summary: 'Produto deletado',
+                    detail: 'O produto foi deletado com sucesso!',
+                    life: 3000
+                });
 
-            setProducts(productsData);
+                // Atualiza a lista de produtos
+                const productsData = await getProducts();
+
+                setProducts(productsData);
+            } else {
+                toast.current.show({
+                    severity:'error',
+                    summary: 'Erro ao deletar produto',
+                    detail: 'O produto não foi deletado!',
+                    life: 3000
+                })
+            }
         }
+
+        deleteButtons.forEach(button => {
+            button.disabled = false;
+        });
     }
 
     const [products, setProducts] = useState([]);
@@ -26,7 +63,6 @@ export default function ProductList() {
         async function loadProducts() {          
             const data = await getProducts();
 
-            console.log(data);
             setProducts(data);
         }
         
@@ -35,6 +71,7 @@ export default function ProductList() {
 
     return (
         <>
+            <Toast ref={toast} />
             <section className="container">
                 <div className="row">
                     <div className="col-12">
