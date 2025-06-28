@@ -9,7 +9,7 @@ export default function CreateProduct()  {
 
             <Title title="Criar produto"/>
 
-            <ProductForm/>
+            <ProductForm action="create"/>
         </>
     )
 }

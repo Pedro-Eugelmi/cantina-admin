@@ -65,7 +65,7 @@ export default function Login() {
                 summary: 'Falha no login.',
                 detail: 'Verifique suas credenciais.',
                 life: 3000 
-            });
+            }); 
         }
 
     }

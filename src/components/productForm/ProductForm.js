@@ -1,15 +1,35 @@
 import { useState, useEffect, useRef } from "react";
 import  getCategories from '../../services/categoryService';
-import { addProduct } from "../../services/productService";
+import { addProduct, updateProductService } from "../../services/productService";
 import { Toast } from 'primereact/toast';
 import noImage from '../../assets/no-image.jpg';
 import styles from "./productForm.module.css";
 
-export default function ProductForm() {
+export default function ProductForm({product, action}) {
+
+    const [name, setName] = useState(product ? product.name: '');
+    const [description, setDescription] = useState(product ? product.description: '');
+    const [quantity, setQuantity] = useState(product ? product.quantity: '');
+    const [category_id, setCategory_id] = useState(product ? product.category_id: '');
+    const [price, setPrice] = useState(product ? product.price: '');
+    
+    // Se a prop mudar
+    useEffect(()=> {
+        if (product) {
+            setName(product.name);
+            setDescription(product.description);
+            setQuantity(product.quantity);
+            setCategory_id(product.category_id);
+            setPrice(product.price);
+        }
+
+    }, [product]);
+
     // Pega as categorias
 
     const [categories, setCategories] = useState([]);
     const toast = useRef(null);
+    const [isThereImage, setIsThereImage] = useState(false);
 
     // Get categories
     useEffect(() => {
@@ -42,7 +62,7 @@ export default function ProductForm() {
         let imagem = document.getElementById('imagem').files[0];
 
         // Validação dos campos
-        if (nome != '' && descricao != '' && preco != "" && categoria != "" && (estoque == 'Nao' || (estoque == 'Sim' && quantidade > 0))) {
+        if (nome !== '' && descricao !== '' && preco !== "" && categoria !== "" && (estoque === 'Nao' || (estoque === 'Sim' && quantidade > 0))) {
            
             toast.current.show({
                 severity: 'info',
@@ -63,9 +83,16 @@ export default function ProductForm() {
                 console.log('Imagem: ', imagem);
             }        
 
-            const response = await addProduct(formData);
+            let response = null;
+
+            if (action === "update") {
+                response = await updateProductService(formData);
+            } else {
+                response = await addProduct(formData);
+            }
+
             
-            if (response.status == 200) {
+            if (response.status === 200) {
 
                 toast.current.show({
                     severity: 'success',
@@ -114,6 +141,7 @@ export default function ProductForm() {
 
         if (!file) {
             ProductImage.src = noImage;
+            setIsThereImage(false);
             return;
         }
 
@@ -130,7 +158,7 @@ export default function ProductForm() {
         
         // Se for uma imagem, exibe a imagem
         ProductImage.src = URL.createObjectURL(file);
-        
+        setIsThereImage(true);
     }
 
     const handleRemoveImage = (event) => {
@@ -141,7 +169,38 @@ export default function ProductForm() {
         // Limpa o input file
         const ProductImageInput = document.getElementById('imagem');
         ProductImageInput.value = ''; 
+        setIsThereImage(false);
 
+    }
+
+    const handleNameChange = (event) => {
+        // Get the input value
+        const name = event.target.value;
+        setName(name);
+    }
+
+    const handleDescriptionChange = (event) => {
+        // Get the input value
+        const description = event.target.value;
+        setDescription(description);
+    }
+
+    const handleQuantityChange = (event) => {
+        // Get the input value
+        const quantity = event.target.value;
+        setQuantity(quantity);
+    }
+
+    const handlePriceChange = (event) => {
+        // Get the input value
+        const price = event.target.value;
+        setPrice(price);
+    }
+
+    const handleCategoryChange = (event) => {
+        // Get the input value
+        const category_id = event.target.value;
+        setCategory_id(category_id);
     }
 
     return (
@@ -156,12 +215,30 @@ export default function ProductForm() {
 
                                 <div>
                                     <label htmlFor="nome">Nome</label>
-                                    <input required placeholder="Nome do produto..." className="mt-2" type="text" name="nome" id="nome" />
+                                    <input 
+                                        required 
+                                        placeholder="Nome do produto..." 
+                                        className="mt-2" 
+                                        type="text" 
+                                        value={name ? name : ''} 
+                                        onChange={(e) => handleNameChange(e)}
+                                        name="nome" 
+                                        id="nome" 
+                                    />
                                 </div>
 
                                 <div className="mt-4">
                                     <label htmlFor="descricao">Descrição</label>
-                                    <textarea required placeholder="Descrição do produto..." className="mt-2 textarea" type="text" name="descricao" id="descricao"></textarea>
+                                    <textarea 
+                                        value={description ? description : ''} 
+                                        onChange={(e) => handleDescriptionChange(e)}
+                                        required 
+                                        placeholder="Descrição do produto..." 
+                                        className="mt-2 textarea" 
+                                        type="text" 
+                                        name="descricao" 
+                                        id="descricao"
+                                    />
                                 </div>
 
                                 <div className="d-flex flex-wrap gap-4">
@@ -169,20 +246,34 @@ export default function ProductForm() {
                                     <div className="mt-4">
                                         <label htmlFor="categoria">Categoria</label>
                                         
-                                        <select required className="mt-2 d-block" name="categoria" id="categoria">
+                                        <select 
+                                            value={category_id ? category_id : ''} 
+                                            onChange={(e) => handleCategoryChange(e)}
+                                            required 
+                                            className="mt-2 d-block" 
+                                            name="categoria" 
+                                            id="categoria"
+                                        >
                                             <option value="">Escolha uma categoria</option>
                                             {categories.data && categories.data.map((category) => {
                                                 return (
                                                     <option key={category.id} value={category.id}>{category.name}</option>
                                                 );
                                             })}
-                                 
                                         </select>
                                     </div>
                                     
                                     <div className="mt-4">
                                         <label htmlFor="descricao">Quantidade</label>
-                                        <input placeholder="Estoque disponível" className="mt-2" type="number" name="quantidade" id="quantidade" />
+                                        <input 
+                                            value={quantity ? quantity : ''} 
+                                            onChange={(e) => handleQuantityChange(e)}
+                                            placeholder="Estoque disponível" 
+                                            className="mt-2" 
+                                            type="number" 
+                                            name="quantidade" 
+                                            id="quantidade" 
+                                        />
                                     </div>
 
                                 </div>
@@ -192,7 +283,16 @@ export default function ProductForm() {
                                     <div className="mt-4">
                                         <label htmlFor="preco">Preço</label>
                                         
-                                        <input required className="mt-2" id="preco" name="preco" type="text" placeholder="Preço do produto..." />
+                                        <input 
+                                            value={price ? price : ''} 
+                                            onChange={(e) => handlePriceChange(e)}
+                                            required 
+                                            className="mt-2" 
+                                            id="preco" 
+                                            name="preco" 
+                                            type="text" 
+                                            placeholder="Preço do produto..." 
+                                        />
                                     </div>
 
                                     <div className="mt-4">
@@ -215,8 +315,13 @@ export default function ProductForm() {
                                 </div>
 
                                 <div className="mt-5 d-flex gap-4">
-                                    <button id="sendForm" type="submit" className="button">Enviar</button>     
-                                    <button type="button" className="button red">Excluir</button>                                    
+                                    <button id="sendForm" type="submit" className="button">Enviar</button> 
+                                    
+                                    {
+                                        action === "update" ? (
+                                            <button type="button" className="button red">Excluir</button>   
+                                        ) : null
+                                    }
                                 </div>
 
                             </div>
@@ -225,12 +330,15 @@ export default function ProductForm() {
                                 <h2>Imagem</h2>
 
                                 <div className={`${styles.image_area} mt-3`}>
-                                    <img id="product-image" src={noImage} alt="Imagem do produto" />       
+                                    <img id="product-image" src={ (product != null && product.image != null)? product.image : noImage } alt="Imagem do produto" />       
                                 </div>
 
                                 <input onChange={handleFileChange} className="mt-3" type="file" name="imagem" id="imagem"/>
 
-                                <button onClick={handleRemoveImage} type="button" className="button red mt-3">Remover Imagem</button>
+                               {
+                                    (isThereImage || (product != null && product.image)) &&
+                                    <button onClick={handleRemoveImage} type="button" className="button red mt-3">Remover Imagem</button>
+                               }
                             </div>
                         </div>
                     </form>
