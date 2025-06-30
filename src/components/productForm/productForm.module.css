@@ -1,0 +1,12 @@
+.image_area {
+    height: 250px;
+    background-color: var(--gray-500);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.image_area img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

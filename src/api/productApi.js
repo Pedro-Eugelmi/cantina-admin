@@ -13,11 +13,32 @@ export const fetchProducts = () => {
     });
 
   };
+
 // Cadastrar novo produto.
-export const createProduct = (data) => api.post('/menu', data);
+export const createProduct = (data) => {
+    const token = localStorage.getItem('token');
+
+    return api.post('/products', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          Accept: 'application/json',
+        },
+      });
+}
 
 // Atualizar produto.
-export const updateProduct = (id, data) => api.put(`/menu/${id}`, data);
+export const updateProduct = (id, data) => {
+    const token = localStorage.getItem('token');
+
+    return api.post(`/products/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          Accept: 'application/json',
+        },
+      });
+}
 
 // Deletar produto.
 export const deleteProduct = (id) => {
@@ -33,5 +54,16 @@ export const deleteProduct = (id) => {
     // Faz a requisição
     return api.delete(`/products/${id}`, {
         headers: headers
+    });
+}
+
+export const getProductById = (id) => {
+    const token = localStorage.getItem('token');
+
+    return api.get(`/products/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
     });
 }

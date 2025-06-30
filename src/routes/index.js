@@ -12,6 +12,7 @@ import CreateCategory from '../pages/categories/CreateCategory/CreateCategory';
 import Users from '../pages/Users';
 import CreateUser from '../pages/user/createUser/CreateUser';
 import UpdateUser from '../pages/user/updateUser/UpdateUser';
+import Page404 from '../pages/Page404';
 
 export default function AppRoutes() {
 
@@ -31,6 +32,8 @@ export default function AppRoutes() {
           <Route path="/usuarios" element={<Users/>} />
           <Route path="/criar-usuario" element={<CreateUser/>} />
           <Route path="/editar-usuario" element={<UpdateUser/>} />
+          <Route path="/nao-encontrado" element={<Page404/>} />
+          <Route path="*" element={<Page404/>} />
         </Route>
       </Routes>
     </BrowserRouter>
