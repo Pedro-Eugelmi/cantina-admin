@@ -1,5 +1,8 @@
 import {fetchOrders} from "../api/orderApi";
 
-export default function GetOrders () {
-    return fetchOrders();
+async function GetOrders () {
+    const response = await fetchOrders();
+    return  response.data.data;
 }
+
+export default GetOrders;

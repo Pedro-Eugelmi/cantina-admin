@@ -31,22 +31,6 @@
     margin: 0;
 }
 
-.paymentStatusBadge {
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--white);
-}
-
-.badgeYellow{
-    background-color: var(--yellow);
-}
-
-.badgeGreen{
-    background-color: var(--green-300);
-}
-
 .client_info{
     display: flex;
     justify-content: space-between;
