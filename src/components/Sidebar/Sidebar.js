@@ -29,7 +29,7 @@ const Sidebar = ({isOpen, toggleSidebar}) => {
                     <li><Link to="/pedidos">Pedidos</Link></li>
                     <li><Link to="/produtos">Produtos</Link></li>
                     <li><Link to="/categorias">Categorias</Link></li>
-                    <li><Link to="/usuarios">Usuários</Link></li>
+                    {/* <li><Link to="/usuarios">Usuários</Link></li> */}
                     <li><Link to="/configuracoes">Configurações</Link></li>
                     <li className={style.logout}>
                         <button onClick={handleLogoutClick} className="d-flex gap-2 just align-items-center">

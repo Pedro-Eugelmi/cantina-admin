@@ -58,11 +58,10 @@ export default function ProductForm({product, action}) {
         let categoria = parseInt(document.getElementById('categoria').value);
         let quantidade = parseInt(document.getElementById('quantidade').value);
         let preco = parseFloat(document.getElementById('preco').value); // float
-        let estoque = document.querySelector('input[name="estoque"]:checked').value;
         let imagem = document.getElementById('imagem').files[0];
 
         // Validação dos campos
-        if (nome !== '' && descricao !== '' && preco !== "" && categoria !== "" && (estoque === 'Nao' || (estoque === 'Sim' && quantidade > 0))) {
+        if (nome !== '' && descricao !== '' && preco !== "" && categoria !== "" && quantidade > 0) {
            
             toast.current.show({
                 severity: 'info',
@@ -295,22 +294,7 @@ export default function ProductForm({product, action}) {
                                         />
                                     </div>
 
-                                    <div className="mt-4">
-                                        <label>Controlar Estoque</label>
-
-                                        <div className="d-flex gap-2 mt-2">
-                                            <label className="radio-option">
-                                              <input required value="Sim" type="radio" name="estoque"/>
-                                                Sim
-                                            </label>
-
-                                            <label className="radio-option">
-                                                <input required value="Nao" type="radio" name="estoque"/>
-                                                Não
-                                            </label>
-
-                                        </div>
-                                    </div>
+                 
 
                                 </div>
 

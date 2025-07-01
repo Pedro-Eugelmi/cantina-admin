@@ -5,7 +5,8 @@ import OrdersList  from "../components/Orders/OrdersList";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Toast } from 'primereact/toast';
-import GetOrders from "../services/orderService";
+import GetOrders, { setOrderStatus } from "../services/orderService";
+import Pagination from "../components/pagination/Pagination";
 
 export default function Orders() {
     const toast = useRef(null);
@@ -13,19 +14,13 @@ export default function Orders() {
 
     const [searchParams] = useSearchParams();
     const login = searchParams.get('login');
-
+    const [status, setStatus] = useState("");
     const [orders, setOrders] = useState([]);
 
-        // Pega os pedidos
-        useEffect(() => {
-            async function loadOrders() {          
-                const data = await GetOrders();
-                console.log(data);
-                setOrders(data);
-            }
-            
-            loadOrders();
-        }, []);
+    // Pega os pedidos
+    useEffect(() => {        
+        loadOrders();
+    }, []);
 
     useEffect(() => {
         
@@ -41,6 +36,33 @@ export default function Orders() {
         }
 
       }, [login]);
+     
+      async function loadOrders() {          
+        const data = await GetOrders(1);
+        setOrders(data);
+        }
+
+
+    const handleChangeStatus = async (e) => {
+        const status = e.target.value;
+        const orderId = e.target.dataset.id;
+
+        // console.log(status)
+        // console.log(orderId)
+
+        // Atualiza o status
+        const data = await setOrderStatus(orderId,status);
+        console.log(data);
+        // Atualiza os pedidos
+        loadOrders();
+    }
+
+    let handlePaginationClick = async (e) => {
+        let number = e.target.value;
+        
+        let data = await GetOrders(number);
+        setOrders(data);
+    }
 
     return (
         <>
@@ -48,7 +70,8 @@ export default function Orders() {
             <Header/>
             <Title title="Pedidos"/>
             <Filters/>
-            <OrdersList orders={orders}/>
+            <OrdersList handleChangeStatus={handleChangeStatus} orders={orders}/>
+            <Pagination handlePaginationClick={handlePaginationClick} current={orders.current_page} total={orders.last_page}/>
         </>
     )
 }

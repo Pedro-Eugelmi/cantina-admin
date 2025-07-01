@@ -5,6 +5,7 @@ import FiltersProduct from "../components/FiltersProduct/FiltersProduct";
 import ProductList from "../components/ProductsList/ProductList";
 import { getProducts, deleteProductService } from "../services/productService";
 import { Toast } from 'primereact/toast'; // Importação do componente Toast
+import Pagination from "../components/pagination/Pagination";
 
 
 export default function Products() {
@@ -15,7 +16,7 @@ export default function Products() {
     // Pega os pedidos
     useEffect( () => {
         async function loadProducts() {          
-            const data = await getProducts();
+            const data = await getProducts(1);
 
             setProducts(data);
         }
@@ -45,7 +46,6 @@ export default function Products() {
         if (productId) {
             // Remove o produto
             let data = await deleteProductService(productId);
-            console.log(data);
 
             if (data.status == 200) {
                 toast.current.show({
@@ -56,7 +56,7 @@ export default function Products() {
                 });
 
                 // Atualiza a lista de produtos
-                const productsData = await getProducts();
+                const productsData = await getProducts(1);
 
                 setProducts(productsData);
             } else {
@@ -74,6 +74,13 @@ export default function Products() {
         });
     }
 
+    let handlePaginationClick = async (e) => {
+        let number = e.target.value;
+        
+        let data = await getProducts(number);
+        setProducts(data);
+    }
+
     return (
         <>
             <Toast ref={toast} />
@@ -81,6 +88,7 @@ export default function Products() {
             <Title title="Produtos" linkbutton="/criar-produto" nameButton="Adicionar +"/>
             <FiltersProduct/>
             <ProductList handleDeleteButton={handleDeleteButton} products={products}/>
+            <Pagination handlePaginationClick={handlePaginationClick} current={products.current_page} total={products.last_page}/>
         </>
     )
 }

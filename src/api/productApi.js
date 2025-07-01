@@ -2,10 +2,10 @@ import api from './axios';
 
 // Listar produtos com suas categorias (paginado 50 por vez).
 
-export const fetchProducts = () => {
+export const fetchProducts = (page) => {
     const token = localStorage.getItem('token');
     
-    return api.get('/products', {
+    return api.get(`/products/?page=${page}`, {
         headers: { 
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

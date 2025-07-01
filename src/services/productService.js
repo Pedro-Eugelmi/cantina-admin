@@ -1,8 +1,8 @@
 import {deleteProduct, fetchProducts, createProduct, getProductById, updateProduct} from "../api/productApi";
 
-export function getProducts () {
+export function getProducts (page) {
 
-    return fetchProducts();
+    return fetchProducts(page);
 }
 
 export function addProduct (data) {

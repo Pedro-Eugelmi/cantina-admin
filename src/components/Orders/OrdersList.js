@@ -1,14 +1,14 @@
 import styles from '../Orders/orderslist.module.css';
 
-export default function Orders({ orders }) {
-  console.log(orders);
+export default function Orders({ orders, handleChangeStatus }) {
+  
   return (
       <section className="container">
           <div className="row">
               <div className="col-12">
 
                 <ul className={styles.orders_area}>
-                  {orders.map(order => (
+                  {orders.data && orders.data.map(order => (
                     <li key={order.id} className={styles.orders_item}>
                       
                       <div className={styles.orders_header}>
@@ -39,11 +39,13 @@ export default function Orders({ orders }) {
                             <strong>Total: {order.total_value}</strong>
                           </div>
 
-                          <select className={styles.status_dropdown} defaultValue={order.status}>
-                            <option value="Pronto">Pronto</option>
-                            <option value="Sendo preparado">Sendo preparado</option>
-                            <option value="Aguardando retirada">Aguardando retirada</option>                          
-                            <option value="Entregue">Entregue</option>
+                          <select data-id={order.id} onChange={handleChangeStatus} className={`${styles.status_dropdown} order-status`} value={order.status}>
+                            <option value="open">Aberto</option>
+                            <option value="awaiting_payment">Aguardando pagamento</option>
+                            <option value="approved">Aprovado</option>
+                            <option value="in_preparation">Sendo preparado</option>
+                            <option value="canceled">Cancelado</option>
+                            <option value="ready">Pronto</option>
                           </select>
                         </div>
                       </div>
@@ -51,16 +53,6 @@ export default function Orders({ orders }) {
                     </li>  
                   ))}
                 </ul>
-                  {/*Aqui estou fazendo uma paginação apenas visual por enquanto*/}  
-                  <nav className={styles.pagination}>
-                    <button className={styles.page_button}>&lt;</button>
-                    <button className={`${styles.page_button} ${styles.active}`}>1</button>
-                    <button className={styles.page_button}>2</button>
-                    <button className={styles.page_button}>3</button>
-                    <button className={styles.page_button}>4</button>
-                    <button className={styles.page_button}>5</button>
-                    <button className={styles.page_button}>&gt;</button>
-                  </nav>
               </div>             
           </div>
       </section>
