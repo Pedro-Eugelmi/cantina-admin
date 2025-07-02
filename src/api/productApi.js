@@ -12,7 +12,7 @@ export const fetchProducts = (page) => {
         }
     });
 
-  };
+};
 
 // Cadastrar novo produto.
 export const createProduct = (data) => {

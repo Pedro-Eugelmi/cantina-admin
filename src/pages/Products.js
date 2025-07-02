@@ -4,7 +4,7 @@ import Title from "../components/Title/Title";
 import FiltersProduct from "../components/FiltersProduct/FiltersProduct";
 import ProductList from "../components/ProductsList/ProductList";
 import { getProducts, deleteProductService } from "../services/productService";
-import { Toast } from 'primereact/toast'; // Importação do componente Toast
+import { Toast } from 'primereact/toast'; 
 import Pagination from "../components/pagination/Pagination";
 
 

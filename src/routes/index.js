@@ -13,6 +13,7 @@ import Users from '../pages/Users';
 import CreateUser from '../pages/user/createUser/CreateUser';
 import UpdateUser from '../pages/user/updateUser/UpdateUser';
 import Page404 from '../pages/Page404';
+import CreateOpeningHours from '../pages/createOpeningHours/CreateOpeningHours';
 
 export default function AppRoutes() {
 
@@ -24,6 +25,7 @@ export default function AppRoutes() {
           <Route path="/pedidos" element={<Orders/>} />
           <Route path="/ver-pedido" element={<ViewOrder/>} />
           <Route path="/configuracoes" element={<Settings/>} />
+          <Route path="/criar-horario" element={<CreateOpeningHours/>} />
           <Route path="/produtos" element={<Products/>} />
           <Route path="/criar-produto" element={<CreateProduct/>} />
           <Route path="/editar-produto" element={<UpdateProduct/>} />
